@@ -1,0 +1,9 @@
+.home-title {
+  margin-bottom: 20px;
+}
+
+.summary-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
