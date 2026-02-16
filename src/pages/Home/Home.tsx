@@ -7,39 +7,45 @@ const Home = () => {
     const { data, loading, error } = useDashboard();
 
     if (loading) {
-        return <div style={{ padding: "20px" }}>Loading dashboard...</div>;
+        return (
+            <div className="loading-container">
+                <div>Loading dashboard...</div>
+            </div>
+        );
     }
 
     if (error || !data) {
         return (
-        <div style={{ padding: "20px", color: "red" }}>
-            {error ?? "Terjadi kesalahan."}
-        </div>
+            <div className="error-container">
+                {error ?? "Terjadi kesalahan."}
+            </div>
         );
     }
 
     return (
-        <div style={{ padding: "20px" }}>
-        <h1>Dashboard</h1>
+        <div className="home-container">
+            {/* Animated particles */}
+            <div className="particle"></div>
+            <div className="particle"></div>
+            <div className="particle"></div>
+            <div className="particle"></div>
+            <div className="particle"></div>
 
-        <div
-            style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-            gap: "20px",
-            marginTop: "20px",
-            }}
-        >
-            <SummaryCard title="Total Rooms" value={data.totalRooms} />
-            <SummaryCard title="Total Bookings" value={data.totalBookings} />
-            <SummaryCard title="Pending" value={data.pending} />
-            <SummaryCard title="Approved" value={data.approved} />
-            <SummaryCard title="Rejected" value={data.rejected} />
-        </div>
+            <div className="content-wrapper">
+                <h1 className="home-title">Dashboard</h1>
 
-        <div style={{ marginTop: "40px" }}>
-            <RecentBookingTable bookings={data.recentBookings} />
-        </div>
+                <div className="summary-container">
+                    <SummaryCard title="Total Rooms" value={data.totalRooms} />
+                    <SummaryCard title="Total Bookings" value={data.totalBookings} />
+                    <SummaryCard title="Pending" value={data.pending} />
+                    <SummaryCard title="Approved" value={data.approved} />
+                    <SummaryCard title="Rejected" value={data.rejected} />
+                </div>
+
+                <div className="recent-bookings-container">
+                    <RecentBookingTable bookings={data.recentBookings} />
+                </div>
+            </div>
         </div>
     );
 };
