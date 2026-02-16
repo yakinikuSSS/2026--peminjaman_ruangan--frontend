@@ -1,0 +1,237 @@
+.form-page-container {
+    padding: 20px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.form-page-container::before {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    top: -200px;
+    right: -200px;
+    animation: float 25s ease-in-out infinite;
+}
+
+.form-page-container::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    bottom: -150px;
+    left: -150px;
+    animation: float 20s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+    }
+    50% {
+        transform: translateY(-20px) translateX(20px);
+    }
+}
+
+.form-particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    animation: rise linear infinite;
+}
+
+.form-particle:nth-child(1) {
+    width: 8px;
+    height: 8px;
+    left: 15%;
+    animation-duration: 10s;
+    animation-delay: 0s;
+}
+
+.form-particle:nth-child(2) {
+    width: 6px;
+    height: 6px;
+    left: 35%;
+    animation-duration: 14s;
+    animation-delay: 2s;
+}
+
+.form-particle:nth-child(3) {
+    width: 7px;
+    height: 7px;
+    left: 55%;
+    animation-duration: 12s;
+    animation-delay: 4s;
+}
+
+.form-particle:nth-child(4) {
+    width: 5px;
+    height: 5px;
+    left: 75%;
+    animation-duration: 16s;
+    animation-delay: 1s;
+}
+
+.form-particle:nth-child(5) {
+    width: 6px;
+    height: 6px;
+    left: 85%;
+    animation-duration: 13s;
+    animation-delay: 3s;
+}
+
+@keyframes rise {
+    0% {
+        bottom: -50px;
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        bottom: 100vh;
+        opacity: 0;
+    }
+}
+
+.form-content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.booking-form-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.booking-form-card {
+    background: white;
+    width: 100%;
+    max-width: 700px;
+    padding: 30px 35px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.booking-form-card h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2d3748;
+    animation: fadeInDown 0.6s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+}
+
+.booking-form input,
+.booking-form select {
+    padding: 10px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    transition: all 0.2s ease;
+}
+
+.booking-form input:focus,
+.booking-form select:focus {
+    outline: none;
+    border-color: #4a5568;
+    box-shadow: 0 0 0 2px rgba(74, 85, 104, 0.15);
+}
+
+.error {
+    font-size: 12px;
+    color: #dc2626;
+}
+
+.form-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-actions button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background-color: #4a5568;
+    color: white;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-actions button:hover {
+    background-color: #2d3748;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-back {
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: #4a5568;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    margin-bottom: 10px;
+}
+
+.btn-back:hover {
+    opacity: 0.7;
+}
