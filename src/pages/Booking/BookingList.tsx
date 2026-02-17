@@ -13,7 +13,6 @@ const BookingStatus = {
 
 type BookingStatus = typeof BookingStatus[keyof typeof BookingStatus];
 
-
 interface Booking {
     id: number;
     borrowerName: string;
@@ -176,7 +175,7 @@ const BookingList = () => {
                                         {new Date(b.endTime).toLocaleString()}
                                     </td>
 
-                                    <td className="tablestatus">
+                                    <td className="table-status">
                                         <span className={`status ${getStatusClass(b.status)}`}>
                                             {getStatusLabel(b.status)}
                                         </span>
@@ -184,58 +183,63 @@ const BookingList = () => {
 
                                     <td>
                                         <div className="action-container">
-                                            <Link to={`/bookings/${b.id}`} className="btn-detail">
-                                                Detail
-                                            </Link>
+                                            <div className="action-row">
+                                                <Link to={`/bookings/${b.id}`} className="btn-action btn-info" title="Detail">
+                                                    📄
+                                                </Link>
 
-                                            <Link to={`/bookings/edit/${b.id}`} className="btn-edit">
-                                                Edit
-                                            </Link>
+                                                <Link to={`/bookings/edit/${b.id}`} className="btn-action btn-warning" title="Edit">
+                                                    ✏️
+                                                </Link>
 
-                                            <div className="status-actions">
-                                                {b.status === BookingStatus.Pending && (
-                                                    <>
-                                                        <button
-                                                            className="btn-approve"
-                                                            onClick={() => handleApprove(b.id)}
-                                                        >
-                                                            Approve
-                                                        </button>
-
-                                                        <button
-                                                            className="btn-reject"
-                                                            onClick={() => handleReject(b.id)}
-                                                        >
-                                                            Reject
-                                                        </button>
-                                                    </>
-                                                )}
-
-                                                {b.status === BookingStatus.Approved && (
-                                                    <>
-                                                        <button
-                                                            className="btn-complete"
-                                                            onClick={() => handleComplete(b.id)}
-                                                        >
-                                                            Complete
-                                                        </button>
-
-                                                        <button
-                                                            className="btn-cancel"
-                                                            onClick={() => handleCancel(b.id)}
-                                                        >
-                                                            Cancel
-                                                        </button>
-                                                    </>
-                                                )}
+                                                <button 
+                                                    className="btn-action btn-danger" 
+                                                    onClick={() => handleDelete(b.id)}
+                                                    title="Delete"
+                                                >
+                                                    🗑️
+                                                </button>
                                             </div>
 
-                                            <button
-                                                className="btn-delete"
-                                                onClick={() => handleDelete(b.id)}
-                                            >
-                                                Delete
-                                            </button>
+                                            {b.status === BookingStatus.Pending && (
+                                                <div className="action-row">
+                                                    <button
+                                                        className="btn-action btn-success"
+                                                        onClick={() => handleApprove(b.id)}
+                                                        title="Approve"
+                                                    >
+                                                        ✓ Approve
+                                                    </button>
+
+                                                    <button
+                                                        className="btn-action btn-reject"
+                                                        onClick={() => handleReject(b.id)}
+                                                        title="Reject"
+                                                    >
+                                                        ✗ Reject
+                                                    </button>
+                                                </div>
+                                            )}
+
+                                            {b.status === BookingStatus.Approved && (
+                                                <div className="action-row">
+                                                    <button
+                                                        className="btn-action btn-complete"
+                                                        onClick={() => handleComplete(b.id)}
+                                                        title="Complete"
+                                                    >
+                                                        ✓ Complete
+                                                    </button>
+
+                                                    <button
+                                                        className="btn-action btn-cancel"
+                                                        onClick={() => handleCancel(b.id)}
+                                                        title="Cancel"
+                                                    >
+                                                        ✗ Cancel
+                                                    </button>
+                                                </div>
+                                            )}
                                         </div>
                                     </td>
                                 </tr>
