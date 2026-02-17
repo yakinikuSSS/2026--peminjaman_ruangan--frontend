@@ -27,7 +27,7 @@ const RecentBookingTable = ({ bookings }: Props) => {
             {bookings.map((b) => (
                 <tr key={b.id}>
                 <td>{b.roomName}</td>
-                <td>{b.date}</td>
+                <td>{new Date(b.date).toLocaleString()}</td>
                 <td>{b.status}</td>
                 </tr>
             ))}

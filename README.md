@@ -1,73 +1,174 @@
-# React + TypeScript + Vite
+# Sistem Peminjaman Ruangan – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend dikembangkan menggunakan **React + TypeScript + Vite** sebagai antarmuka pengguna untuk sistem peminjaman ruangan.
 
-Currently, two official plugins are available:
+Frontend terhubung ke backend ASP.NET Core API melalui REST API.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- TypeScript
+- Vite
+- Axios
+- React Router
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Requirements
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Pastikan sudah terinstall:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Node.js** (disarankan versi terbaru LTS)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Download Node.js:
+https://nodejs.org/
+
+Cek versi Node:
+
+```bash
+node -v
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Cek versi npm:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm -v
 ```
+
+---
+
+## 📥 Installation
+
+Masuk ke folder frontend:
+
+```bash
+cd 2026--peminjaman_ruangan--frontend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+
+## Environment Configuration
+
+Frontend menggunakan environment variable untuk menentukan URL backend.
+
+File `.env` **tidak di-push ke repository**.
+
+Buat file `.env` berdasarkan `.env.example`:
+
+```bash
+cp .env.example .env
+```
+
+Isi default:
+
+```env
+VITE_API_BASE_URL=http://localhost:5023/api
+```
+
+
+## Running the Application
+
+Jalankan development server:
+
+```bash
+npm run dev
+```
+
+Lalu click url port, contoh:
+
+```
+http://localhost:5173
+```
+
+Pastikan backend sudah berjalan sebelum mengakses frontend.
+
+---
+
+## Core Features
+
+### Dashboard
+- Summary Card:
+  - Total Active Bookings (Pending + Approved)
+  - Pending
+  - Approved
+  - Rejected
+- Recent Booking Table (5 data terbaru)
+
+---
+
+### Booking Page
+- Menampilkan booking aktif (Pending & Approved)
+- Create Booking
+- Edit Booking
+- Detail Booking
+- Approve / Reject
+- Complete / Cancel
+- Auto refresh setelah perubahan status
+
+---
+
+### 3️⃣ History Page
+- Menampilkan riwayat booking:
+  - Rejected
+  - Completed
+  - Cancelled
+- Search berdasarkan:
+  - Nama peminjam
+  - Nama ruangan
+  - Kode ruangan
+  - Tujuan
+  - Status
+- Filter berdasarkan:
+  - Status
+  - Rentang tanggal
+- Sorting berdasarkan:
+  - StartTime
+  - CreatedAt
+  - Status
+
+---
+
+## 🔗 API Integration
+
+Base URL diambil dari:
+
+```ts
+import.meta.env.VITE_API_BASE_URL
+```
+
+Pastikan backend berjalan pada port yang sama dengan konfigurasi `.env`.
+
+
+## 📁 Folder Structure (Simplified)
+
+```
+FRONTEND/
+│
+├── src/
+│   ├── api/
+│   ├── components/
+│   ├── pages/
+│   ├── routes/
+│   └── types/
+│
+├── public/
+├── package.json
+├── vite.config.ts
+└── .env.example
+```
+
+## Troubleshooting
+
+Jika terjadi error:
+
+1. Pastikan backend sudah berjalan
+2. Pastikan `VITE_API_BASE_URL` sesuai
+3. Jalankan ulang `npm install`
+4. Restart development server setelah mengubah `.env`
+
+Frontend siap digunakan.
